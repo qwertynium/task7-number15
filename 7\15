@@ -1,0 +1,77 @@
+package com.company;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+import static java.lang.System.out;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+        out.println("test1 {1, 1, 1, 1, 1, 1, 1} ответ:  " + raschetSrednego(test1()));
+        out.println("test2 {1,2,3,4,5,6,7} ответ:  " + raschetSrednego(test2()));
+        out.println("test3 {0,0,0,0,0,0,0,0} ответ:  "+ raschetSrednego(test3()));
+        out.println("test4 {1,1,1,1,1,1,2} ответ: "+ raschetSrednego(test4()));
+
+        int[ ] myArray = arrayInput();
+        out.println("Количество чисел больше среднего:" + raschetSrednego(myArray));
+
+    }
+
+        public static int[ ] arrayInput() {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Введите массив: ");
+            String line = scanner.nextLine();
+            String[] lineArray = line.split(" ");
+            int[] arr = new int[lineArray.length];
+
+            for (int i = 0; i < lineArray.length;  i++) {
+
+                arr[i] = Integer.parseInt(lineArray[i]);
+                out.println(arr[i]);
+                out.println(Arrays.toString(arr));
+        }
+
+
+            return arr;
+    }
+        public static int raschetSrednego(int [ ] myArray){
+            int sum = 0;
+
+            for (int a : myArray) {
+                sum += a;
+        }
+
+            double size = myArray.length;
+            double sredneeZnachene = sum / size;
+            int colichestvoOdinacovChisel = 1;
+            int schetBolcheSrednego = 0;
+
+            for (int i = 0; i < size ; i++) {
+
+                if (myArray[i] >= sredneeZnachene) {
+                    schetBolcheSrednego++;
+                    if (sredneeZnachene == myArray[i]) {
+                        colichestvoOdinacovChisel++;
+                }
+            }
+        }
+            if (colichestvoOdinacovChisel - 1 == size ) {
+                schetBolcheSrednego = 0;
+        }
+            return schetBolcheSrednego;
+    }
+        public static int[ ] test1() {
+            return new int[]{1, 1, 1, 1, 1, 1, 1};
+    }
+        public static int[ ] test2() {
+            return new int[]{1,2,3,4,5,6,7};
+    }
+        public static int[ ] test3() {
+            return new int[]{0,0,0,0,0,0,0,0};
+    }
+        public static int[ ] test4() {
+            return new int[]{1,1,1,1,1,1,2};
+    }
+}
